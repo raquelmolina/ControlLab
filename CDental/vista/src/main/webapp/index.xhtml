@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+          
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <style type="text/css">
+    .ui-datatable .ui-datatable-header {
+        text-align: right !important;
+    }
+     
+    .ui-button-text-only .ui-button-text {
+        padding: 0.3em 0.4em;
+    }
+     
+    .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-chkbox {
+        visibility: hidden;
+    }
+     
+    .ui-filter-column .ui-column-customfilter .custom-filter {
+        width: 100%;
+        box-sizing: border-box;
+    }
+     
+    .year-spinner input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+</style>
+
+    <h:head>
+
+        <link rel="StyleSheet" href="resources/atributos.css" type="text/css" />
+    </h:head>
+    <h:body>
+
+        <div class="barraMenu">
+            <a href="#">Citas</a>
+            <a href="#">Pagos</a>
+            <div class="desplegable">
+                <button class="despBoton">Pacientes</button>
+                <div class="contDesplegable">
+                    <a href="#pagRP">Registro de Pacientes</a>
+                    <a href="#pagCP">Consulta de Pacientes</a>
+                    <a href="#">Modificación de Pacientes</a>
+                    <a href="#">Eliminación de Pacientes</a>
+                </div>
+            </div>
+            <a href="#">Historial Clínico</a>
+            <div class="desplegable">
+                <button class="despBoton">Catálogos</button>
+                <div class="contDesplegable">
+                    <a href="#">Instumental y Materiales</a>
+                    <a href="#">Procedimientos Dentales</a>
+                </div>
+            </div> 
+        </div>
+
+        <div id="pagRP">
+            <div class="titulos">
+                <p><img class="icono" src="C:\Users\Andre\OneDrive\Desktop\Html\Imagenes\regresar1.jpg">  </img> Pacientes /<a href="url"> Registro</a></p>
+            </div>
+            <div class="regPacientes" >
+                <h:form>
+                    Fecha de registro <p:inputText id="fRegistroR" type="date"  size="10" value ="#{pacienteUI.paciente.fechaDeRegistro}" required="true" />
+                    <br> </br>Nombre*: <p:inputText  id="nombreR" type="text" size="50"  title="Solo Letras." value ="#{pacienteUI.paciente.nombre}" required="" />
+                    <br> </br>Fecha de Nacimiento*: <p:inputText  id="fechaN" type="date" value ="#{pacienteUI.fecha}" required="true" />
+                    <br> </br>Teléfono: <p:inputText  id="telefonoR" type="number" value ="#{pacienteUI.paciente.telefono}" required="true" />
+                    <br> </br>Domicilio: <p:inputText id="domicilioR" type="text" size="50" value ="#{pacienteUI.paciente.domicilio}" /><br></br>
+                    <br></br>  <p:inputText id="aseguranzaR" type="checkbox" value ="#{pacienteUI.paciente.aseguranza}" /> Aseguranza: <p:inputText  type="text" value ="#{pacienteUI.paciente.numeroDeSeguro}"/><br></br>
+
+                    <p:commandButton styleClass="boton1"  value="Cancelar" />
+                    <p:commandButton  styleClass="boton2"  value="Registrar" id="btn_guardar" actionListener="#{pacienteUI.registro()}" />
+
+                </h:form>
+            </div>
+
+
+        </div>
+        
+        <div id="pagCP">
+            <div class="titulos">
+                <p><img class="icono" src="C:\Users\Andre\OneDrive\Desktop\Html\Imagenes\regresar1.jpg">  </img> Pacientes /<a href="pagRP"> Consulta</a></p> 
+            </div>
+        <div class="conPacientes" >
+            
+            <h:form>
+            <p:dataTable var="Paciente" emptyMessage="No se encontro" value="#{pacienteUI.pac}" widgetVar="Table"  filteredValue="#{pacienteUI.filtro}">
+                  <f:facet name="header">
+            <p:outputPanel>
+                <h:outputText value="Search all fields:" />
+                <p:inputText id="globalFilter" onkeyup="PF('Table').filter()" style="width:150px" placeholder="Enter keyword"/>
+            </p:outputPanel>
+        </f:facet> 
+      
+        
+                <p:column  headerText="Nombre" filterBy="#{Paciente.nombre}" filterMatchMode="contains" >
+        <h:outputText value="#{Paciente.nombre}"  />
+    </p:column>
+ 
+    <p:column headerText="Nacimiento">
+        <h:outputText value="#{Paciente.fechaDeNacimiento}" />
+    </p:column>
+ 
+    <p:column headerText="Telefono">
+        <h:outputText value="#{Paciente.telefono}" />
+    </p:column>
+ 
+    <p:column headerText="Direccion">
+        <h:outputText value="#{Paciente.domicilio}" />
+    </p:column>
+         <p:column headerText="Aseguranza">
+             <h:outputText value="#{Paciente.aseguranza}" />
+    </p:column>
+</p:dataTable>
+            </h:form>
+        </div>
+      </div>
+    <!--
+        <div id="pagMP">
+            <div class="titulos">
+                <p><img class="icono" src="C:\Users\Andre\OneDrive\Desktop\Html\Imagenes\regresar1.jpg">   Pacientes /<a href="pagRP"> Modificación</a></p>
+            </div>
+            <div class="modPacientes" >
+                <p align="center">Nombre: <input id="nombre" name="button_OpBuscarP" type="text" size="50" required maxlength="70" pattern="[A-Za-z]+" title="Solo Letras." required/> <input name="button_OpBuscar" class="botonBuscar" type="button" value="Buscar"></p>
+                <hr>
+                <div id="modificacionP">
+                    <form >
+                        <br>Fecha de registro*: <input name="fecha_MP" id="fRegistroR" type="date" size="5" required/><br>
+                        <br>Nombre*: <input name="nombre_MP" id="nombreR" type="text" size="50" required maxlength="70" pattern="[A-Za-z]+" title="Solo Letras." required/><br>
+                        <br>Fecha de Nacimiento*: <input name="fechaNacimiento_MP" id="fechaN" type="date" required/><br>
+                        <br>Teléfono: <input name="telefono_MP" id="telefonoR"type="number" required/><br>
+                        <br>Domicilio: <input name="domicilio_MP" id="domicilioR"type="text" size="50"  required maxlength="45"  /><br>
+                        <br><input name="aseguranza_RP" id="aseguranzaR" type="checkbox"> Aseguranza: <input name="aseguranza_MP" type="text"/><br><br>
+
+                        <input name="button_OpCancelarP" class="boton1" type="button" value="Cancelar">
+                        <input name="button_OpModificarP" class="boton2" type="button" value="Modficar">
+                    </form>
+                </div>
+            </div>
+      </div>
+    
+        <div id="pagEP">
+            <div class="titulos">
+                <p><img class="icono" src="C:\Users\Andre\OneDrive\Desktop\Html\Imagenes\regresar1.jpg">   Pacientes /<a href="pagRP"> Eliminación</a></p>
+            </div>
+            <div class="eliPacientes" >
+                <p align="center">Nombre: <input id="nombre" name="button_OpBuscarP" type="text" size="50" required maxlength="70" pattern="[A-Za-z]+" title="Solo Letras." required/> <input name="button_OpBuscar" class="botonBuscar" type="button" value="Buscar"></p>
+                <table style="overflow: auto" id="main-container">
+                    <thead>
+                        <tr>
+                            <th>Registro</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableElimicacion_P"></tbody>
+                </table>
+                <input name="button_OpEliminarP" class="boton1" type="button" value="Eliminar">
+            </div>
+        </div>
+        -->
+
+
+    </h:body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+      <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="StyleSheet" href="atributos.css" type="text/css" />
+    </head>
+    <body>
+        <!-- ---------------------------- M E N U  P R I N C I P A L ---------------------------- -->
+        <div class="barraMenu">
+            <a href="#">Citas</a>
+            <a href="#">Pagos</a>
+            <div class="desplegable">
+                <button class="despBoton">Pacientes</button>
+                <div class="contDesplegable">
+                    <a href="#pagRP">Registro de Pacientes</a>
+                    <a href="#pagCP">Consulta de Pacientes</a>
+                    <a href="#">Modificación de Pacientes</a>
+                    <a href="#">Eliminación de Pacientes</a>
+                </div>
+            </div>
+            <a href="#">Historial Clínico</a>
+            <div class="desplegable">
+                <button class="despBoton">Catálogos</button>
+                <div class="contDesplegable">
+                    <a href="#">Instumental y Materiales</a>
+                    <a href="#">Procedimientos Dentales</a>
+                </div>
+            </div> 
+        </div>
+        <!-- ------------------------------------------------------------------------------------ -->
+        <!-- -----------------------  P A C I E N T E S - R E G I S T R O ----------------------- -->
+        <div id="pagRP">
+            <div class="titulos">
+                <p><img class="icono" src="C:\Users\Andre\OneDrive\Desktop\Html\Imagenes\regresar1.jpg">   Pacientes /<a href="url"> Registro</a></p>
+            </div>
+        <div class="regPacientes" >
+            <form >
+                <br>Fecha de registro*: <input name="fecha_RP" id="fRegistroR" type="date" size="5" required/><br>
+                <br>Nombre*: <input name="nombre_RP" id="nombreR" type="text" size="50" required maxlength="70" pattern="[A-Za-z]+" title="Solo Letras." required/><br>
+                <br>Fecha de Nacimiento*: <input name="fechaNacimiento_RP" id="fechaN" type="date" required/><br>
+                <br>Teléfono: <input name="telefono_RP" id="telefonoR"type="number" required/><br>
+                <br>Domicilio: <input name="domicilio_RP" id="domicilioR"type="text" size="50"  required maxlength="45"  /><br>
+                <br><input name="aseguranza_RP" id="aseguranzaR" type="checkbox"> Aseguranza: <input name="aseguranza_MP" type="text"/><br><br>
+
+                <input name="button_OpCancelar" class="boton1" type="button" value="Cancelar">
+                <input name="button_OpRegistrar" class="boton2" type="button" value="Registrar" id="btn_guardar" onclick="guardar()">
+                
+            </form>
+        </div>
+      </div>
+      		  <!-- ------------------------------------------------------------------------------------ -->
+              <!-- -----------------------  P A C I E N T E S - C O N S U L T A ----------------------- -->
+        <div id="pagCP">
+            <div class="titulos">
+                <p><img class="icono" src="C:\Users\Andre\OneDrive\Desktop\Html\Imagenes\regresar1.jpg">   Pacientes /<a href="pagRP"> Consulta</a></p>
+            </div>
+        <div class="conPacientes" >
+            <p align="center">Nombre: <input id="nombre" name="button_OpBuscarP" type="text" size="50" required maxlength="70" pattern="[A-Za-z]+" title="Solo Letras." required/> <input name="button_OpBuscar" class="botonBuscar" type="button" value="Buscar"></p>
+            <table style="overflow: auto" id="main-container">
+                <thead>
+                    <tr>
+                        <th>Registro</th>
+                        <th>Nombre</th>
+                        <th>Nacimiento</th>
+                        <th>Teléfono</th>
+                        <th>Dirección</th>
+                        <th>Aseguranza</th>
+                    </tr>
+                </thead>
+                <tbody id="tableConsulta _P"></tbody>
+            </table>
+        </div>
+      </div>
+      <!-- ------------------------------------------------------------------------------------ -->
+      <!-- -------------------  P A C I E N T E S - M O D I F I C A C I O N ------------------- -->
+        <div id="pagMP">
+            <div class="titulos">
+                <p><img class="icono" src="C:\Users\Andre\OneDrive\Desktop\Html\Imagenes\regresar1.jpg">   Pacientes /<a href="pagRP"> Modificación</a></p>
+            </div>
+            <div class="modPacientes" >
+                <p align="center">Nombre: <input id="nombre" name="button_OpBuscarP" type="text" size="50" required maxlength="70" pattern="[A-Za-z]+" title="Solo Letras." required/> <input name="button_OpBuscar" class="botonBuscar" type="button" value="Buscar"></p>
+                <hr>
+                <div id="modificacionP">
+                    <form >
+                        <br>Fecha de registro*: <input name="fecha_MP" id="fRegistroR" type="date" size="5" required/><br>
+                        <br>Nombre*: <input name="nombre_MP" id="nombreR" type="text" size="50" required maxlength="70" pattern="[A-Za-z]+" title="Solo Letras." required/><br>
+                        <br>Fecha de Nacimiento*: <input name="fechaNacimiento_MP" id="fechaN" type="date" required/><br>
+                        <br>Teléfono: <input name="telefono_MP" id="telefonoR"type="number" required/><br>
+                        <br>Domicilio: <input name="domicilio_MP" id="domicilioR"type="text" size="50"  required maxlength="45"  /><br>
+                        <br><input name="aseguranza_RP" id="aseguranzaR" type="checkbox"> Aseguranza: <input name="aseguranza_MP" type="text"/><br><br>
+
+                        <input name="button_OpCancelarP" class="boton1" type="button" value="Cancelar">
+                        <input name="button_OpModificarP" class="boton2" type="button" value="Modficar">
+                    </form>
+                </div>
+            </div>
+      </div>
+      <!-- ------------------------------------------------------------------------------------ -->
+      <!-- -------------------  P A C I E N T E S - E L I M I N A C I O N  -------------------- -->
+        <div id="pagEP">
+            <div class="titulos">
+                <p><img class="icono" src="C:\Users\Andre\OneDrive\Desktop\Html\Imagenes\regresar1.jpg">   Pacientes /<a href="pagRP"> Eliminación</a></p>
+            </div>
+            <div class="eliPacientes" >
+                <p align="center">Nombre: <input id="nombre" name="button_OpBuscarP" type="text" size="50" required maxlength="70" pattern="[A-Za-z]+" title="Solo Letras." required/> <input name="button_OpBuscar" class="botonBuscar" type="button" value="Buscar"></p>
+                <table style="overflow: auto" id="main-container">
+                    <thead>
+                        <tr>
+                            <th>Registro</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableElimicacion_P"></tbody>
+                </table>
+                <input name="button_OpEliminarP" class="boton1" type="button" value="Eliminar">
+            </div>
+        </div>
+      <!-- ------------------------------------------------------------------------------------ -->
+      <script type="text/javascript">
+            function guardar(){ //Funcion para guardar el registro y visualizar en la tabla de CONSULTA
+                
+                var _fRegistro = document.getElementById("fRegistroR").value;
+                var _nombre = document.getElementById("nombreR").value;
+                var _nacimiento = document.getElementById("nacimientoR").value;
+                var _telefono = document.getElementById("telefonoR").value;
+                var _domicilio = document.getElementById("domicilioR").value;
+                var _aseguranza;
+
+
+                var fila="<tr><td>"+_fRegistro+"</td><td>"+_nombre +"</td><td>"+_nacimiento +"</td><td>"+_telefono +"</td><td>"+_domicilio+"</td><td>"+_aseguranza+"</td></tr>";
+
+                var btn = document.createElement("TR");
+                btn.innerHTML=fila;
+                document.getElementById("tableConsulta _P").appendChild(btn);
+            }
+      </script>
+    </body>
+</html>
